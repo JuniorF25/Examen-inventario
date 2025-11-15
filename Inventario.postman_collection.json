@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "a8a2a3a3-3a3a-4a3a-8a3a-3a3a3a3a3a3a",
+		"name": "Inventario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Listar productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productos?page=0&size=5&sort=nombre,asc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "sort",
+									"value": "nombre,asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener producto por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/productos/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sku\": \"AUD-SONY-WH1000XM5\",\n  \"nombre\": \"Audífonos Sony WH-1000XM5\",\n  \"descripcion\": \"Audífonos inalámbricos con cancelación de ruido\",\n  \"unidadMedida\": \"unidad\",\n  \"precioCompra\": 350.00,\n  \"precioVenta\": 450.00\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bodegas",
+			"item": [
+				{
+					"name": "Listar bodegas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bodegas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bodegas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Proveedores",
+			"item": [
+				{
+					"name": "Listar proveedores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/proveedores",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"proveedores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventario",
+			"item": [
+				{
+					"name": "Consultar inventario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inventario?page=0&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventario"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar inventario por producto y bodega",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inventario?productoId=1&bodegaId=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventario"
+							],
+							"query": [
+								{
+									"key": "productoId",
+									"value": "1"
+								},
+								{
+									"key": "bodegaId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar totales de inventario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inventario/totales?page=0&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inventario",
+								"totales"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimientos",
+			"item": [
+				{
+					"name": "Registrar entrada",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productoId\": 5,\n  \"bodegaId\": 1,\n  \"proveedorId\": 1,\n  \"cantidad\": 200,\n  \"costoUnitario\": 2.45,\n  \"referencia\": \"FAC-COMP-006\",\n  \"notas\": \"Nueva reposición de cables\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/movimientos/entrada",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movimientos",
+								"entrada"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar salida",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productoId\": 3,\n  \"bodegaId\": 2,\n  \"cantidad\": 5,\n  \"precioUnitario\": 125.00,\n  \"referencia\": \"VEN-TIENDA-003\",\n  \"notas\": \"Venta en mostrador\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/movimientos/salida",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movimientos",
+								"salida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar historial de movimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/movimientos?productoId=1&tipo=S&desde=2025-01-01&hasta=2025-12-31&sort=fecha,desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"movimientos"
+							],
+							"query": [
+								{
+									"key": "productoId",
+									"value": "1"
+								},
+								{
+									"key": "tipo",
+									"value": "S"
+								},
+								{
+									"key": "desde",
+									"value": "2025-01-01"
+								},
+								{
+									"key": "hasta",
+									"value": "2025-12-31"
+								},
+								{
+									"key": "sort",
+									"value": "fecha,desc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api"
+		}
+	]
+}

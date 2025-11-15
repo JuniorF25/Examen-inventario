@@ -1,0 +1,72 @@
+###
+# API de Gestión de Inventario
+#
+# Variables
+@baseUrl = http://localhost:8080/api
+
+### 1. Listar todos los productos (paginado)
+GET {{baseUrl}}/productos?page=0&size=5&sort=nombre,asc
+
+### 2. Obtener un producto por ID (usar un ID del seed data, ej: 1)
+GET {{baseUrl}}/productos/1
+
+### 3. Crear un nuevo producto
+POST {{baseUrl}}/productos
+Content-Type: application/json
+
+{
+  "sku": "AUD-SONY-WH1000XM5",
+  "nombre": "Audífonos Sony WH-1000XM5",
+  "descripcion": "Audífonos inalámbricos con cancelación de ruido",
+  "unidadMedida": "unidad",
+  "precioCompra": 350.00,
+  "precioVenta": 450.00
+}
+
+### 4. Listar todas las bodegas
+GET {{baseUrl}}/bodegas
+
+### 5. Listar todos los proveedores
+GET {{baseUrl}}/proveedores
+
+### 6. Consultar inventario (sin filtros)
+GET {{baseUrl}}/inventario?page=0&size=10
+
+### 7. Consultar inventario (filtrando por producto y bodega)
+# Usar IDs del seed data
+GET {{baseUrl}}/inventario?productoId=1&bodegaId=1
+
+### 8. Consultar totales de inventario por producto
+GET {{baseUrl}}/inventario/totales?page=0&size=10
+
+### 9. Registrar una entrada de inventario
+POST {{baseUrl}}/movimientos/entrada
+Content-Type: application/json
+
+{
+  "productoId": 5,
+  "bodegaId": 1,
+  "proveedorId": 1,
+  "cantidad": 200,
+  "costoUnitario": 2.45,
+  "referencia": "FAC-COMP-006",
+  "notas": "Nueva reposición de cables"
+}
+
+### 10. Registrar una salida de inventario
+POST {{baseUrl}}/movimientos/salida
+Content-Type: application/json
+
+{
+  "productoId": 3,
+  "bodegaId": 2,
+  "cantidad": 5,
+  "precioUnitario": 125.00,
+  "referencia": "VEN-TIENDA-003",
+  "notas": "Venta en mostrador"
+}
+
+### 11. Consultar historial de movimientos (filtrado)
+# Filtros: productoId=1, tipo=S, y rango de fechas
+GET {{baseUrl}}/movimientos?productoId=1&tipo=S&desde=2025-01-01&hasta=2025-12-31&sort=fecha,desc
+
